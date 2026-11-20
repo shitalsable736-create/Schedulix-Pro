@@ -1,0 +1,6 @@
+{
+  "name": "ScheduleX Pro",
+  "description": "A clean, minimalist personal academic schedule, task manager, class timetable, and exam tracker designed in a responsive light theme.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

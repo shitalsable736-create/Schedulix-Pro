@@ -1,0 +1,198 @@
+{
+  "entities": {
+    "Task": {
+      "title": "Task",
+      "description": "A personal academic task or assignment synchronized across devices.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the authenticated owner."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the task or assignment."
+        },
+        "subject": {
+          "type": "string",
+          "description": "Course or subject name."
+        },
+        "dueDate": {
+          "type": "string",
+          "description": "Due date in YYYY-MM-DD format."
+        },
+        "priority": {
+          "type": "string",
+          "description": "Priority level of the task.",
+          "enum": ["high", "medium", "low"]
+        },
+        "progress": {
+          "type": "integer",
+          "description": "Completion percentage from 0 to 100."
+        },
+        "status": {
+          "type": "string",
+          "description": "Completion status of the task.",
+          "enum": ["pending", "completed"]
+        },
+        "source": {
+          "type": "string",
+          "description": "Origin integration of the task.",
+          "enum": ["manual", "todoist", "notion", "google_tasks", "ai"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the task was created (FieldValue.serverTimestamp())."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the task was last updated (FieldValue.serverTimestamp())."
+        }
+      },
+      "required": [
+        "ownerId",
+        "title",
+        "subject",
+        "dueDate",
+        "priority",
+        "progress",
+        "status",
+        "source",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ClassSession": {
+      "title": "ClassSession",
+      "description": "A recurring weekly class or lecture session.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the authenticated owner."
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject or course name."
+        },
+        "day": {
+          "type": "string",
+          "description": "Day of the week.",
+          "enum": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        },
+        "time": {
+          "type": "string",
+          "description": "Time slot for the class session."
+        },
+        "room": {
+          "type": "string",
+          "description": "Classroom or building location."
+        },
+        "teacher": {
+          "type": "string",
+          "description": "Instructor or professor name."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the class session was created (FieldValue.serverTimestamp())."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the class session was last updated (FieldValue.serverTimestamp())."
+        }
+      },
+      "required": [
+        "ownerId",
+        "subject",
+        "day",
+        "time",
+        "room",
+        "teacher",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Exam": {
+      "title": "Exam",
+      "description": "An upcoming exam or assessment with date and grade weight.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the authenticated owner."
+        },
+        "title": {
+          "type": "string",
+          "description": "Exam title."
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject or course name."
+        },
+        "date": {
+          "type": "string",
+          "description": "Exam date in YYYY-MM-DD format."
+        },
+        "time": {
+          "type": "string",
+          "description": "Exam start time."
+        },
+        "room": {
+          "type": "string",
+          "description": "Exam room or hall."
+        },
+        "weight": {
+          "type": "integer",
+          "description": "Grade weight percentage from 1 to 100."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the exam was created (FieldValue.serverTimestamp())."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the exam was last updated (FieldValue.serverTimestamp())."
+        }
+      },
+      "required": [
+        "ownerId",
+        "title",
+        "subject",
+        "date",
+        "time",
+        "room",
+        "weight",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/tasks/{taskId}": {
+      "schema": { "$ref": "#/entities/Task" },
+      "description": "User-owned tasks and assignments."
+    },
+    "/classes/{classId}": {
+      "schema": { "$ref": "#/entities/ClassSession" },
+      "description": "User-owned weekly class schedule sessions."
+    },
+    "/exams/{examId}": {
+      "schema": { "$ref": "#/entities/Exam" },
+      "description": "User-owned upcoming exams and assessments."
+    }
+  }
+}
